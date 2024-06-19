@@ -1,3 +1,6 @@
-Labrador, Amigable
-Persa, Tranquilo
-Pastor Aleman, Inteligente.
+Labrador,Amigable
+Persa,Tranquilo
+Pastor Aleman,Inteligente
+Guacamayo,Hablador
+Golden Retriever,Leal
+Caniche,Perro tranquilo

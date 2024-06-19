@@ -4,11 +4,11 @@ class Raza:
         self.caracteristicas = caracteristicas
 
     def __str__(self):
-        return f"nombre: {self.nombre}, características: {self.caracteristicas}"
+        return f"{self.nombre} - {self.caracteristicas}"
 
     def __repr__(self):
-        return (f"Raza(nombre = {self.nombre}, caracteristicas = {self.caracteristicas})")
+        return f"{self.nombre} - {self.caracteristicas}"
 
-    def eliminarRaza(self):
+    def eliminar_raza(self):
         self.nombre = None
         self.caracteristicas = None

@@ -1,3 +1,0 @@
-Fido,Perro,Labrador,Saludable,Christian
-Ragnar,Gato,,Saludable,Abdul
-Rex,Perro,Pastor Aleman,Enfermo,Carlos Gomez

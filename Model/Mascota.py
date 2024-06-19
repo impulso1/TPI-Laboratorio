@@ -1,13 +1,22 @@
-# esto no es la verdadera clase mascota, es un borrador para probar la funcion de agregar mascota a Propietario.
-
 class Mascota:
-	def __init__(self,raza,nombre):
-		self.raza = raza
-		self.nombre = nombre
-	
-	def __str__(self):
-		return self.nombre+" "+self.raza
-		
-	def __repr__(self):
-		return self.nombre
-	
+    def __init__(self, nombre, especie, raza, estado, propietario):
+        self.nombre = nombre
+        self.especie = especie
+        self.raza = raza
+        self.estado = estado
+        self.propietario = propietario
+
+    def __str__(self):
+        return (f"{self.nombre} - {self.especie} - {self.raza} - {self.estado} - "
+                f"{self.propietario}")
+
+    def __repr__(self):
+        return (f"{self.nombre} - {self.especie} - {self.raza} - {self.estado} - "
+                f"{self.propietario}")
+
+    def eliminar_mascota(self):
+        self.nombre = None
+        self.especie = None
+        self.raza = None
+        self.estado = None
+        self.propietario = None

@@ -1,0 +1,4 @@
+Pfizer,08/2025,1 cada 8hs,$100,Tomar en ayunas
+AntiMoquillo,01/2028,1 x dia,$80,A la noche
+AntiTetanica,12/2025,1 al anio,$100,Puede hacer vomitar
+Moquilon,02/90,Cada 4hs,$5,Referencia

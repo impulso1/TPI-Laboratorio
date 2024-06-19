@@ -1,0 +1,18 @@
+Raza 1<--1 Mascota
+Mascota 1..*<--1 DetallePropietario
+DetallePropietario 1<--<*>1 Propietario
+Propietario --|> Persona
+Veterinario --|> Persona
+Diagnostico 1<>)-->1 Tratamiento
+Factura --> Propietario
+Factura --> Veterinario
+Consulta 1 --> 1 Veterinario
+Vacuna 1..* <-- 1 DetalleConsulta
+Tratamiento 1 <-- 1 Consulta
+DetalleConsulta 1 <--<*> 1 Consulta
+DetalleFichaMedica 1<>)-- 1..* Consulta
+Factura --> Consulta
+Diagnostico 1 <-- 1 Consulta
+Veterinario 1 <-- 1 Consulta
+FichaMedica 1 <*>--> 1 DetalleFichaMedica
+Mascota <--(<> 1 FichaMedica

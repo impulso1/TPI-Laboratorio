@@ -80,3 +80,9 @@ class ControladorTratamiento:
 
     def obtener_lista_nombres_diagnosticos(self):
         return [diagnostico.nombre for diagnostico in self.diagnostico.listaDiagnosticos]
+
+    def buscar_tratamiento_por_diagnostico(self, diagnostico):
+        for tratamiento in self.listaTratamientos:
+            if tratamiento.diagnostico.nombre == diagnostico:
+                return tratamiento
+        return None

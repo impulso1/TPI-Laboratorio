@@ -54,3 +54,9 @@ class ControladorVacuna:
         for vacuna in self.listaVacunas:
             if vacuna.nombre.lower() == nombrevacuna.lower():
                 return vacuna
+
+    def obtener_costo_vacuna(self, nombre_vacuna):
+        vacuna = self.buscar_vacunaxnombre(nombre_vacuna)
+        if vacuna:
+            return vacuna.costo
+        return None

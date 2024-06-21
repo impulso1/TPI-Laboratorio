@@ -63,3 +63,5 @@ class ControladorMascota:
     def mostrar_mascotas(self):
         return self.listaMascotas
 
+    def obtener_mascotas_y_propietarios(self):
+        return [(f"{mascota.nombre} (Dueño: {mascota.propietario})", mascota.nombre) for mascota in self.listaMascotas]

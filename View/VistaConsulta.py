@@ -8,61 +8,80 @@ class VistaConsulta(tk.Toplevel):
         super().__init__(master)
         self.controlador_consulta = controlador_consulta
         self.title("Generar Consulta")
-        self.geometry("600x950")
+        self.geometry("900x800")
         self.resizable(False, False)  # Evitar que la ventana cambie de tamaño
 
+        # Parte izquierda
+        self.frame_izquierda = tk.Frame(self)
+        self.frame_izquierda.pack(side=tk.LEFT, padx=20, pady=20)
+
         # Fecha de hoy
-        self.fecha_label = tk.Label(self, text=f"Fecha: {datetime.now().strftime('%Y-%m-%d')}")
+        self.fecha_label = tk.Label(self.frame_izquierda, text=f"Fecha: {datetime.now().strftime('%Y-%m-%d')}")
         self.fecha_label.pack(pady=10)
 
         # Combobox para elegir mascota
-        self.mascota_label = tk.Label(self, text="Seleccionar Mascota:")
+        self.mascota_label = tk.Label(self.frame_izquierda, text="Seleccionar Mascota:")
         self.mascota_label.pack(pady=5)
 
         self.mascotas = self.controlador_consulta.obtener_nombres_mascotas()
-        self.mascota_combobox = ttk.Combobox(self, values=self.mascotas)
+        self.mascota_combobox = ttk.Combobox(self.frame_izquierda, values=self.mascotas)
         self.mascota_combobox.pack(pady=5)
         self.mascota_combobox.bind("<<ComboboxSelected>>", self.actualizar_dueno_mascota)
 
         # Cuadro de texto para mostrar el dueño de la mascota
-        self.dueno_label = tk.Label(self, text="Dueño de la Mascota:")
+        self.dueno_label = tk.Label(self.frame_izquierda, text="Dueño de la Mascota:")
         self.dueno_label.pack(pady=5)
-        self.dueno_text = tk.Entry(self, state='readonly', width=60)
+        self.dueno_text = tk.Entry(self.frame_izquierda, state='readonly', width=60)
         self.dueno_text.pack(pady=5)
 
         # Combobox para elegir veterinario
-        self.veterinario_label = tk.Label(self, text="Seleccionar Veterinario:")
+        self.veterinario_label = tk.Label(self.frame_izquierda, text="Seleccionar Veterinario:")
         self.veterinario_label.pack(pady=5)
 
         self.veterinarios = self.controlador_consulta.obtener_nombres_veterinarios()
-        self.veterinario_combobox = ttk.Combobox(self, values=self.veterinarios)
+        self.veterinario_combobox = ttk.Combobox(self.frame_izquierda, values=self.veterinarios)
         self.veterinario_combobox.pack(pady=5)
         self.veterinario_combobox.bind("<<ComboboxSelected>>", self.actualizar_matricula_veterinario)
 
         # Cuadro de texto para mostrar la matrícula del veterinario
-        self.matricula_label = tk.Label(self, text="Matrícula del Veterinario:")
+        self.matricula_label = tk.Label(self.frame_izquierda, text="Matrícula del Veterinario:")
         self.matricula_label.pack(pady=5)
-        self.matricula_text = tk.Entry(self, state='readonly', width=60)
+        self.matricula_text = tk.Entry(self.frame_izquierda, state='readonly', width=60)
         self.matricula_text.pack(pady=5)
 
         # Diagnóstico
-        self.diagnostico_label = tk.Label(self, text="Seleccionar Diagnóstico:")
+        self.diagnostico_label = tk.Label(self.frame_izquierda, text="Seleccionar Diagnóstico:")
         self.diagnostico_label.pack(pady=5)
 
         self.diagnosticos = self.controlador_consulta.obtener_nombres_diagnosticos()
-        self.diagnostico_combobox = ttk.Combobox(self, values=self.diagnosticos)
+        self.diagnostico_combobox = ttk.Combobox(self.frame_izquierda, values=self.diagnosticos)
         self.diagnostico_combobox.pack(pady=5)
         self.diagnostico_combobox.bind("<<ComboboxSelected>>", self.mostrar_tratamiento_relacionado)
 
         # Cuadro de texto para mostrar el tratamiento relacionado
-        self.tratamiento_text = tk.Text(self, height=8, width=60, state='disabled')  # Aumentar el tamaño
+        self.tratamiento_text = tk.Text(self.frame_izquierda, height=8, width=60, state='disabled')  # Aumentar el tamaño
         self.tratamiento_text.pack(pady=5)
 
+        # Observaciones
+        self.observaciones_label = tk.Label(self.frame_izquierda, text="Observaciones:")
+        self.observaciones_label.pack(pady=5)
+        self.observaciones_text = tk.Text(self.frame_izquierda, height=5, width=60)
+        self.observaciones_text.pack(pady=5)
+
+        # Parte derecha
+        self.frame_derecha = tk.Frame(self)
+        self.frame_derecha.pack(side=tk.RIGHT, padx=20, pady=20)
+
+        # Imagen
+        self.imagen_label = tk.Label(self.frame_derecha)
+        self.imagen_label.pack(pady=10)
+        self.mostrar_imagen()
+
         # Checkboxes para vacunas
-        self.vacunas_label = tk.Label(self, text="Vacunas:")
+        self.vacunas_label = tk.Label(self.frame_derecha, text="Vacunas:")
         self.vacunas_label.pack(pady=5)
 
-        self.vacunas_frame = tk.Frame(self)
+        self.vacunas_frame = tk.Frame(self.frame_derecha)
         self.vacunas_frame.pack(pady=5)
 
         self.vacunas = self.controlador_consulta.obtener_nombres_vacunas()
@@ -75,22 +94,21 @@ class VistaConsulta(tk.Toplevel):
             self.vacunas_vars[vacuna] = var
 
         # Etiqueta para mostrar el costo total
-        self.costo_consulta_label = tk.Label(self, text="Costo Consulta: $50.00")
+        self.costo_consulta_label = tk.Label(self.frame_derecha, text="Costo Consulta: $50.00")
         self.costo_consulta_label.pack(pady=10)
 
         # Etiqueta para mostrar el costo total
-        self.costo_total_label = tk.Label(self, text="Costo Total: $50.00")
+        self.costo_total_label = tk.Label(self.frame_derecha, text="Costo Total: $50.00")
         self.costo_total_label.pack(pady=10)
 
-        # Observaciones
-        self.observaciones_label = tk.Label(self, text="Observaciones:")
-        self.observaciones_label.pack(pady=5)
-        self.observaciones_text = tk.Text(self, height=4, width=60)
-        self.observaciones_text.pack(pady=5)
-
         # Botón para guardar consulta
-        self.guardar_button = tk.Button(self, text="Guardar Consulta", command=self.guardar_consulta)
+        self.guardar_button = tk.Button(self.frame_derecha, text="Generar", command=self.guardar_consulta)
         self.guardar_button.pack(pady=10)
+
+    def mostrar_imagen(self):
+        imagen = tk.PhotoImage(file="Resources/Consulta.png")
+        self.imagen_label.config(image=imagen)
+        self.imagen_label.image = imagen
 
     def actualizar_dueno_mascota(self, event):
         mascota = self.mascota_combobox.get()

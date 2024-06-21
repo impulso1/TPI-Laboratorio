@@ -108,3 +108,4 @@ class ControladorGeneral:
     def mostrar_vista_tratamientos(self, tratamiento):
         vista_tratamiento = VistaTratamiento(tratamiento, self.controlador_tratamiento)
         vista_tratamiento.mainloop()
+

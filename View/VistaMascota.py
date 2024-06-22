@@ -64,7 +64,7 @@ class VistaMascota(tk.Toplevel):
         self.estado_entry.pack()
 
         tk.Label(self.formulario_creacion, text="Propietario:").pack()
-        propietarios_disponibles = self.controlador_propietario.obtener_nombres_propietarios()
+        propietarios_disponibles = [f"{propietarios.nombre} {propietarios.apellido}" for propietarios in self.controlador_propietario.listaPropietarios]
         self.propietario_combobox = ttk.Combobox(self.formulario_creacion, values=propietarios_disponibles)
         self.propietario_combobox.pack()
 

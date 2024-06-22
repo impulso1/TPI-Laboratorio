@@ -1,9 +1,7 @@
 from Model.Tratamiento import Tratamiento
 from Controller.ControladorDiagnostico import ControladorDiagnostico
 
-
 class ControladorTratamiento:
-
     def __init__(self):
         self.diagnostico = ControladorDiagnostico()
         self.listaTratamientos = []
@@ -16,33 +14,25 @@ class ControladorTratamiento:
             nombrediagnostico, descripcion, duracion, indicaciones = renglon.strip().split("|")
             diagnostico = self.diagnostico.buscar_diagnosticoxnombre(nombrediagnostico.lower())
             if diagnostico:
-                self.listaTratamientos.append(Tratamiento(diagnostico, descripcion, duracion, indicaciones))
+                tratamiento = Tratamiento(diagnostico, descripcion, duracion, indicaciones)
+                self.listaTratamientos.append(tratamiento)
+                diagnostico.tratamientos.append(tratamiento)  # Actualizar el atributo tratamientos
             else:
-                print(f"No se encontró el diagnostico con nombre {diagnostico}")
+                print(f"No se encontró el diagnóstico con nombre {nombrediagnostico}")
 
     def nuevo_tratamiento(self, nombrediagnostico, descripcion, duracion, indicaciones):
         diagnostico = self.diagnostico.buscar_diagnosticoxnombre(nombrediagnostico.lower())
         if diagnostico:
             tratamiento = Tratamiento(diagnostico, descripcion, duracion, indicaciones)
             self.listaTratamientos.append(tratamiento)
-        else:
-            pass
+            diagnostico.tratamientos.append(tratamiento)
 
-    def actualizar_mascota(self, cod, nombrediagnostico, descripcion, duracion, indicaciones):
-        diagnostico = self.diagnostico.buscar_diagnosticoxnombre(nombrediagnostico.lower())
-        if diagnostico:
-            self.listaTratamientos[cod - 1] = Tratamiento(diagnostico, descripcion, duracion, indicaciones)
-            self.guardar_archivo_tratamientos()
-
-    def modificar_tratamiento(self, cod, nombrediagnostico, descripcion, duracion, indicaciones):
+    def modificar_tratamiento(self, cod, descripcion, duracion, indicaciones):
         tratamiento = self.buscar_objeto(cod)
         if tratamiento:
-            diagnostico = self.diagnostico.buscar_diagnosticoxnombre(nombrediagnostico.lower())
-            if diagnostico:
-                tratamiento.diagnostico = diagnostico
-                tratamiento.descripcion = descripcion
-                tratamiento.duracion = duracion
-                tratamiento.indicaciones = indicaciones
+            tratamiento.descripcion = descripcion
+            tratamiento.duracion = duracion
+            tratamiento.indicaciones = indicaciones
 
     def buscar_objeto(self, cod):
         for i, tratamiento in enumerate(self.listaTratamientos, start=1):
@@ -54,35 +44,40 @@ class ControladorTratamiento:
 
     def guardar_archivo_tratamientos(self):
         with open("Resources/Tratamientos.txt", "w") as file:
-            for tramiento in self.listaTratamientos:
-                nombrediagnostico = tramiento.diagnostico.nombre if tramiento.diagnostico else ''
-                file.write(
-                    f"{nombrediagnostico}|{tramiento.descripcion}|{tramiento.duracion}|{tramiento.indicaciones}\n")
-
+            for tratamiento in self.listaTratamientos:
+                nombrediagnostico = tratamiento.diagnostico.nombre if tratamiento.diagnostico else ''
+                file.write(f"{nombrediagnostico}|{tratamiento.descripcion}|{tratamiento.duracion}|{tratamiento.indicaciones}\n")
 
     def eliminar_tratamiento(self, tratamiento):
         if tratamiento in self.listaTratamientos:
             self.listaTratamientos.remove(tratamiento)
+            tratamiento.diagnostico.tratamientos.remove(tratamiento)  # Asegurarse de que este atributo exista en Diagnostico
             self.guardar_archivo_tratamientos()
             return True
         return False
 
     def buscar_tratamientoxnombre(self, nombretratamiento):
         for tratamiento in self.listaTratamientos:
-            if tratamiento.nombre.lower() == nombretratamiento.lower():
+            if tratamiento.descripcion.lower() == nombretratamiento.lower():
                 return tratamiento
 
-    def mostrar_decripciondexdiagnostico(self, diagnostico):
-        for tratamiento in self.listaTratamientos:
-            if tratamiento.diagnostico == diagnostico:
-                return tratamiento.descripcion
-
+    def mostrar_descripcion_por_diagnostico(self, diagnostico):
+        return [tratamiento.descripcion for tratamiento in self.listaTratamientos if tratamiento.diagnostico == diagnostico]
 
     def obtener_lista_nombres_diagnosticos(self):
         return [diagnostico.nombre for diagnostico in self.diagnostico.listaDiagnosticos]
 
     def buscar_tratamiento_por_diagnostico(self, diagnostico):
+        tratamientos_relacionados = []
         for tratamiento in self.listaTratamientos:
-            if tratamiento.diagnostico.nombre == diagnostico:
-                return tratamiento
-        return None
+            if tratamiento.diagnostico.nombre.lower() == diagnostico.lower():
+                tratamientos_relacionados.append(tratamiento.descripcion)
+        return tratamientos_relacionados
+
+    def buscar_descripcion(self, tratamiento_nombre):
+        for tratamiento in self.listaTratamientos:
+            if tratamiento.diagnostico == tratamiento_nombre:
+                return (f"Descripción: {tratamiento.descripcion}\n"
+                        f"Duracion: {tratamiento.duracion}\n"
+                        f"Indicaciones: {tratamiento.indicaciones}")
+        return "Descripción no encontrada."

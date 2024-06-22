@@ -3,4 +3,5 @@ Persa,Tranquilo
 Pastor Aleman,Inteligente
 Guacamayo,Hablador
 Golden Retriever,Leal
-Caniche,Perro tranquilo
+Caniche,Tranquilo
+Doberman,Guardian

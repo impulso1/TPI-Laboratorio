@@ -8,7 +8,7 @@ class VistaConsulta(tk.Toplevel):
         super().__init__(master)
         self.controlador_consulta = controlador_consulta
         self.title("Generar Consulta")
-        self.geometry("900x800")
+        self.geometry("900x700")
         self.resizable(False, False)  # Evitar que la ventana cambie de tamaño
 
         # Parte izquierda
@@ -56,11 +56,17 @@ class VistaConsulta(tk.Toplevel):
         self.diagnosticos = self.controlador_consulta.obtener_nombres_diagnosticos()
         self.diagnostico_combobox = ttk.Combobox(self.frame_izquierda, values=self.diagnosticos)
         self.diagnostico_combobox.pack(pady=5)
-        self.diagnostico_combobox.bind("<<ComboboxSelected>>", self.mostrar_tratamiento_relacionado)
+        self.diagnostico_combobox.bind("<<ComboboxSelected>>", self.cargar_tratamientos_relacionados)
 
-        # Cuadro de texto para mostrar el tratamiento relacionado
-        self.tratamiento_text = tk.Text(self.frame_izquierda, height=8, width=60, state='disabled')  # Aumentar el tamaño
-        self.tratamiento_text.pack(pady=5)
+        self.tratamiento_label = tk.Label(self.frame_izquierda, text="Seleccionar Tratamiento:")
+        self.tratamiento_label.pack(pady=5)
+
+        self.tratamientos_combobox = ttk.Combobox(self.frame_izquierda, values=[], state="readonly")
+        self.tratamientos_combobox.pack(pady=5)
+        self.tratamientos_combobox.bind("<<ComboboxSelected>>", self.mostrar_descripcion_tratamiento)
+
+        self.descripcion_tratamiento_text = tk.Text(self.frame_izquierda, height=8, width=60, state='disabled')
+        self.descripcion_tratamiento_text.pack(pady=5)
 
         # Observaciones
         self.observaciones_label = tk.Label(self.frame_izquierda, text="Observaciones:")
@@ -132,13 +138,6 @@ class VistaConsulta(tk.Toplevel):
             self.matricula_text.insert(0, "No encontrada")
         self.matricula_text.config(state='readonly')
 
-    def mostrar_tratamiento_relacionado(self, event):
-        diagnostico = self.diagnostico_combobox.get()
-        tratamiento = self.controlador_consulta.obtener_tratamiento_por_diagnostico(diagnostico)
-        self.tratamiento_text.config(state='normal')
-        self.tratamiento_text.delete("1.0", tk.END)
-        self.tratamiento_text.insert(tk.END, tratamiento)
-        self.tratamiento_text.config(state='disabled')
 
     def actualizar_costo(self):
         costo_general_consulta = 50  # Costo general de la consulta
@@ -153,10 +152,38 @@ class VistaConsulta(tk.Toplevel):
         mascota = self.mascota_combobox.get()
         veterinario = self.veterinario_combobox.get()
         diagnostico = self.diagnostico_combobox.get()
-        tratamiento = self.tratamiento_text.get("1.0", tk.END).strip()
+        tratamiento = self.descripcion_tratamiento_text.get("1.0", tk.END).strip()
         observaciones = self.observaciones_text.get("1.0", tk.END).strip()
         vacunas_seleccionadas = [vacuna for vacuna, var in self.vacunas_vars.items() if var.get()]
 
+        costo_general_consulta = 50  # Costo general de la consulta
+        costo_total = costo_general_consulta  # Inicializar con el costo de la consulta
+        costo_vacunas = sum(
+            [float(self.controlador_consulta.obtener_costo_vacuna(vacuna)) for vacuna, var in self.vacunas_vars.items()
+             if var.get()])
+        costo_total += costo_vacunas  # Sumar el costo de las vacunas seleccionadas
+
         self.controlador_consulta.guardar_consulta(mascota, veterinario, diagnostico, tratamiento,
-                                                   vacunas_seleccionadas, observaciones)
+                                                   vacunas_seleccionadas, observaciones, costo_total)
         self.destroy()
+
+    def cargar_tratamientos_relacionados(self, event):
+        diagnostico = self.diagnostico_combobox.get()
+        tratamientos = self.controlador_consulta.tratamientos.buscar_tratamiento_por_diagnostico(diagnostico)
+        if tratamientos:
+            self.tratamientos_combobox.config(values=tratamientos, state="readonly")
+            self.tratamientos_combobox.set('')
+        else:
+            self.tratamientos_combobox.config(values=[], state="readonly")
+            self.descripcion_tratamiento_text.config(state='normal')
+            self.descripcion_tratamiento_text.delete("1.0", tk.END)
+            self.descripcion_tratamiento_text.insert(tk.END, "No se encontró tratamiento para el diagnóstico seleccionado")
+            self.descripcion_tratamiento_text.config(state='disabled')
+
+    def mostrar_descripcion_tratamiento(self, event):
+        tratamiento = self.tratamientos_combobox.get()
+        descripcion = self.controlador_consulta.obtener_descripcion_tratamientos(tratamiento)
+        self.descripcion_tratamiento_text.config(state='normal')
+        self.descripcion_tratamiento_text.delete("1.0", tk.END)
+        self.descripcion_tratamiento_text.insert(tk.END, descripcion)
+        self.descripcion_tratamiento_text.config(state='disabled')

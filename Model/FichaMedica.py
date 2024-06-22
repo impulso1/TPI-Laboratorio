@@ -1,31 +1,34 @@
-class Detalle_Ficha_Medica:
-    def __init__(self, fecha, descripcion):
-        self.fecha = fecha
-        self.descripcion = descripcion
-    
-    def __str__(self):
-        return f"Detalle_Ficha_Medica(fecha={self.fecha}, descripcion={self.descripcion})"
-
 class FichaMedica:
-    def __init__(self, mascota):
-        self.mascota = mascota  # Este será un objeto de la clase Mascota
-        self.detalles = []
+    def __init__(self, fecha, mascota, veterinario, diagnostico, tratamiento, descripcion, duracion, indicaciones, vacunas, observaciones):
+        self.fecha = fecha
+        self.mascota = mascota
+        self.veterinario = veterinario
+        self.diagnostico = diagnostico
+        self.tratamiento = tratamiento
+        self.descripcion = descripcion
+        self.duracion = duracion
+        self.indicaciones = indicaciones
+        self.vacunas = vacunas
+        self.observaciones = observaciones
 
-    def agregar_detalle(self, detalle):
-        self.detalles.append(detalle)  # Este será un objeto de la clase Detalle_Ficha_Medica
+    @classmethod
+    def from_string(cls, s):
+        datos = s.strip().split("\n")
+        fecha = datos[0].split(": ")[1]
+        mascota = datos[1].split(": ")[1]
+        veterinario = datos[2].split(": ")[1]
+        diagnostico = datos[3].split(": ")[1]
+        tratamiento = datos[4].split(": ")[1]
+        descripcion = datos[5].split(": ")[1]
+        duracion = datos[6].split(": ")[1]
+        indicaciones = datos[7].split(": ")[1]
+        vacunas = datos[8].split(": ")[1].split(", ")
+        observaciones = datos[9].split(": ")[1]
+        return cls(fecha, mascota, veterinario, diagnostico, tratamiento, descripcion, duracion, indicaciones, vacunas, observaciones)
 
-    def eliminar_detalle(self, indice):
-        if 0 <= indice < len(self.detalles):
-            del self.detalles[indice]
-        else:
-            print("Índice fuera de rango.")
-
-    def editar_detalle(self, indice, nuevo_detalle):
-        if 0 <= indice < len(self.detalles):
-            self.detalles[indice] = nuevo_detalle
-        else:
-            print("Índice fuera de rango.")
 
     def __str__(self):
-        detalles_str = "\n".join(str(detalle) for detalle in self.detalles)
-        return f"Ficha_Medica de {self.mascota}\nDetalles:\n{detalles_str}"
+        return f"{self.fecha} - {self.mascota} - {self.veterinario} - {self.diagnostico} - {self.tratamiento} - {self.vacunas} - {self.observaciones}"
+
+    def __repr__(self):
+        return f"{self.fecha} - {self.mascota} - {self.veterinario} - {self.diagnostico} - {self.tratamiento} - {self.vacunas} - {self.observaciones}"

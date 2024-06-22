@@ -1,3 +1,3 @@
-2024-06-21^Aurelion Sol^Moquillo^Descripción: Protocolo de tratamiento para perros diagnosticados con moquillo, una enfermedad viral grave que afecta el sistema respiratorio, gastrointestinal y nervioso.
-Duración: Entre 2 a 6 semanas.
-Indicaciones: Antiviral, Antibiotico, Terapia de apoyo nutricional, AntipirÃ©ticos y Antiinflamatorios.^^Puto el que lee
+2024-06-21^Aurelion Sol^Parvovirus^Descripción: Protocolo de tratamiento para perros diagnosticados con parvovirus, una enfermedad viral altamente contagiosa que afecta el sistema gastrointestinal y cardiovascular.
+Duración: Entre 1 a 4 semanas.
+Indicaciones: Antiviral, AntibiÃ³ticos, Terapia de fluidos intravenosos, Soporte nutricional, AntiemÃ©ticos.^Placebo^dsdsgsdgdgs

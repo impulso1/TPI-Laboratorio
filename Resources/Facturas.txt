@@ -1,0 +1,10 @@
+##########
+Veterinario: Daniel Brochero
+Cliente: Ivan Giordano
+Paciente: Piter
+Costo total: $211.00
+##########
+Veterinario: Fatima Florez
+Cliente: Claudia Basualdo
+Paciente: Lore
+Costo total: $50.00

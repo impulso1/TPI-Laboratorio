@@ -6,6 +6,7 @@ from Controller.ControladorVacuna import ControladorVacuna
 from Controller.ControladorDiagnostico import ControladorDiagnostico
 from Controller.ControladorTratamiento import ControladorTratamiento
 from Controller.ControladorConsulta import ControladorConsulta
+from Controller.ControladorFichaMedica import ControladorFichaMedica
 from View.VistaGeneral import VistaGeneral
 from View.VistaMascota import VistaMascota
 from View.VistaRaza import VistaRaza
@@ -15,6 +16,7 @@ from View.VistaVacunas import VistaVacunas
 from View.VistaDiagnostico import VistaDiagnostico
 from View.VistaTratamiento import VistaTratamiento
 from View.VistaConsulta import VistaConsulta
+from View.VistaFichaMedica import VistaFichaMedica
 
 
 class ControladorGeneral:
@@ -24,9 +26,10 @@ class ControladorGeneral:
         self.controlador_propietario = ControladorPropietario()
         self.controlador_veterinario = ControladorVeterinario()
         self.controlador_vacuna = ControladorVacuna()
-        self.controlador_diagnostico = ControladorDiagnostico()
         self.controlador_tratamiento = ControladorTratamiento()
+        self.controlador_diagnostico = ControladorDiagnostico()
         self.controlador_consulta = ControladorConsulta()
+        self.controlador_fichamedica = ControladorFichaMedica()
 
     def abrir_vista_consulta(self, master):
         vista_consulta = VistaConsulta(master=master, controlador_consulta=self.controlador_consulta)
@@ -61,6 +64,10 @@ class ControladorGeneral:
             tratamientos = self.controlador_tratamiento.mostrar_tratamientos()
             if tratamientos:
                 self.mostrar_vista_tratamientos(tratamientos)
+        elif vista.selected_option.get() == "Fichas Medicas":
+            mascotas = self.controlador_mascota.mostrar_mascotas()
+            if mascotas:
+                self.mostrar_vista_fichasmedicas(mascotas)
 
     def mostrar_mascotas(self):
         return self.controlador_mascota.mostrar_mascotas()
@@ -77,6 +84,7 @@ class ControladorGeneral:
         self.controlador_vacuna.cargar_archivo_vacunas()
         self.controlador_diagnostico.cargar_archivo_diagnosticos()
         self.controlador_tratamiento.cargar_archivo_tratamiento()
+
         vista_general = VistaGeneral(master=root, controlador_general=self)
         vista_general.mainloop()
 
@@ -101,6 +109,9 @@ class ControladorGeneral:
         vista_vacunas = VistaVacunas(vacunas, self.controlador_vacuna)
         vista_vacunas.mainloop()
 
+    def mostrar_vista_fichasmedicas(self, mascotas):
+        vista_fichasmedicas = VistaFichaMedica(mascotas, self.controlador_fichamedica)
+        vista_fichasmedicas.mainloop()
     def mostrar_vista_diagnosticos(self, diagnosticos):
         vista_diagnostico = VistaDiagnostico(diagnosticos, self.controlador_diagnostico)
         vista_diagnostico.mainloop()

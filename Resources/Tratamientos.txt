@@ -1,4 +1,5 @@
 Parvovirus|Protocolo de tratamiento para perros diagnosticados con parvovirus, una enfermedad viral altamente contagiosa que afecta el sistema gastrointestinal y cardiovascular.|Entre 1 a 4 semanas.|Antiviral, Antibióticos, Terapia de fluidos intravenosos, Soporte nutricional, Antieméticos.
 Moquillo|Protocolo de tratamiento para perros diagnosticados con moquillo, una enfermedad viral grave que afecta el sistema respiratorio, gastrointestinal y nervioso.|Entre 2 a 6 semanas.|Antiviral, Antibiotico, Terapia de apoyo nutricional, Antipiréticos y Antiinflamatorios.
 Insuficiencia renal|Protocolo de tratamiento para perros diagnosticados con insuficiencia renal crónica, una enfermedad progresiva que afecta la función renal.|Tratamiento de por vida con evaluaciones regulares.|Dieta renal, Medicación para reducir la presión arterial, Suplementos de fósforo, Terapia de fluidos subcutáneos, Medicación para controlar la anemia.
-Moquillo|vsf|sv|dsf
+Rabia|Para rabia aguda|2 semanas|Antirabidico inyectable
+Moquillo|P1|1|1

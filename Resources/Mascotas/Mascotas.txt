@@ -1,8 +1,4 @@
-Pepito|Loro|Guacamayo|Saludable|Ivan
-Peter|Perro|Labrador| Viejo|Ivan
-Losaf|Perro|Persa|Saludable|Ivan
-Happy|Perro|Labrador|Excelente|Ivan
-Pepe|Loro|Guacamayo|Saludable|Ivan
-Pepelino|Gato|Persa|Saludable|Hanibal Lester
 Chiquito|Perro|Caniche|Duro|Felipe Segundo
-Luna|Perro|Caniche|Sano|Felipe - Segundo - 595566556 - das@afs.com
+Luna|Perro|Caniche|Sano|Felipe Segundo
+Piter|Perro|Caniche|Duro|Ivan Giordano
+Lore|Loro|Guacamayo|Viejo|Claudia Basualdo

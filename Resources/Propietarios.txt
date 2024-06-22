@@ -1,3 +1,5 @@
 Felipe,Segundo,595566556,das@afs.com
 Hanibal,Lester,14241413,r3rfew@gmail.com
 Ivan,Giordano,3535100205,giordvan@gmail.com
+Guada,Perez,3534256789,guadaperez@gmail.com
+Claudia,Basualdo,3534067068,claubasu@gmail.com

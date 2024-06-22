@@ -1,5 +1,6 @@
 from Model.Propietario import Propietario
 
+
 class ControladorPropietario:
     def __init__(self):
         self.listaPropietarios = []
@@ -34,6 +35,12 @@ class ControladorPropietario:
         for i, propietario in enumerate(self.listaPropietarios, start=1):
             if i == int(cod):
                 return propietario
+
+    def buscar_propietario_por_nombre(self, nombre):
+        for propietario in self.listaPropietarios:
+            if propietario.nombre == nombre:
+                return propietario
+        return None
 
     def agregar_mascota(self, propietario, mascota):
         if mascota not in propietario.mascotas:

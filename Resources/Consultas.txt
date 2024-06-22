@@ -1,3 +1,3 @@
-2024-06-21^Diego Masied^Parvovirus^DescripciÛn: Protocolo de tratamiento para perros diagnosticados con parvovirus, una enfermedad viral altamente contagiosa que afecta el sistema gastrointestinal y cardiovascular.
+2024-06-21^Aurelion Sol^Parvovirus^DescripciÛn: Protocolo de tratamiento para perros diagnosticados con parvovirus, una enfermedad viral altamente contagiosa que afecta el sistema gastrointestinal y cardiovascular.
 DuraciÛn: Entre 1 a 4 semanas.
-Indicaciones: Antiviral, Antibi√≥ticos, Terapia de fluidos intravenosos, Soporte nutricional, Antiem√©ticos.^AntiTetanica^sd
+Indicaciones: Antiviral, Antibi√≥ticos, Terapia de fluidos intravenosos, Soporte nutricional, Antiem√©ticos.^Placebo^dsdsgsdgdgs

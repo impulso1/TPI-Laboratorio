@@ -11,10 +11,10 @@ class ControladorMascota:
 
     def cargar_archivo_mascotas(self):
         self.razas.cargar_archivo_razas()
-        with open("Resources/Mascotas.txt", "r") as file:
+        with open("Resources/Mascotas/Mascotas.txt", "r") as file:
             renglones = file.readlines()
         for renglon in renglones:
-            valores = renglon.strip().split(",")
+            valores = renglon.strip().split("|")
             if len(valores) == 5:
                 nombre, especie, nombre_raza, estado, propietario = valores
                 raza = self.razas.buscar_razaxnombre(nombre_raza.lower())
@@ -23,12 +23,14 @@ class ControladorMascota:
                 else:
                     print(f"No se encontró la raza con nombre {nombre_raza}")
 
-    def crear_mascota(self, nombre, especie, nombre_raza, estado, propietario):
+    def crear_mascota(self, nombre, especie, nombre_raza, estado, propietario_nombre):
         raza = self.razas.buscar_razaxnombre(nombre_raza.lower())
         if raza:
-            mascota = Mascota(nombre, especie, raza, estado, propietario)
+            mascota = Mascota(nombre, especie, raza, estado, propietario_nombre)
             self.listaMascotas.append(mascota)
-            self.propietario.agregar_mascota(mascota)
+            propietario = self.propietario.buscar_propietario_por_nombre(propietario_nombre)
+            if propietario:
+                self.propietario.agregar_mascota(propietario, mascota)
         else:
             pass
 
@@ -54,11 +56,11 @@ class ControladorMascota:
         return False
 
     def guardar_archivo_mascotas(self):
-        with open("Resources/Mascotas.txt", "w") as file:
+        with open("Resources/Mascotas/Mascotas.txt", "w") as file:
             for mascota in self.listaMascotas:
                 raza_nombre = mascota.raza.nombre if mascota.raza else ''
                 file.write(
-                    f"{mascota.nombre},{mascota.especie},{raza_nombre},{mascota.estado},{mascota.propietario}\n")
+                    f"{mascota.nombre}|{mascota.especie}|{raza_nombre}|{mascota.estado}|{mascota.propietario}\n")
 
     def mostrar_mascotas(self):
         return self.listaMascotas

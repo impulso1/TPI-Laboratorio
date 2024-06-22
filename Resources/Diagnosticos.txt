@@ -1,3 +1,4 @@
-Moquillo,Mocos,Algun moquizida,Peligrozo en cachorros y razas pequeñas
-Insuficiencia renal,Vomitos y diarrea,Antiespasmodico,Controlar la dieta
-Parvovirus, Afecta el sistema gastrointestinal y cardiovascular, Antiviral y antibióticos, Potencialmente mortal
+Moquillo|Mocos|Peligrozo en cachorros y razas pequeñas
+Insuficiencia renal|Antiespasmodico|Controlar la dieta
+Parvovirus|Afecta el sistema gastrointestinal y cardiovascular|Potencialmente mortal
+Rabia|Baba y agresividad|Puede ser peligroso para humanos

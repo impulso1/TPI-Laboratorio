@@ -1,35 +1,21 @@
 from Model.FichaMedica import FichaMedica
+import os
 
 class ControladorFichaMedica:
     def __init__(self):
-        self.listaFichas = []
+        self.listaFichasMedicas = []
 
-    def cargar_archivo_fichas(self):
-        with open("Resources/FichasMedicas.txt", "r") as file:
-            renglones = file.readlines()
-        for renglon in renglones:
-            datos = renglon.strip().split(",")
-            self.listaFichas.append(FichaMedica(*datos))
+    def cargar_archivo_fichas_medicas(self, nombre_mascota):
+        nombre = nombre_mascota.split()[0]
+        archivo = f"Resources/Mascotas/FichaMedica{nombre}.txt"
+        with open(archivo, "r") as file:
+            lineas = file.read().split("##########")
+        self.listaFichasMedicas = [FichaMedica.from_string(ficha) for ficha in lineas if ficha]
 
-    def crear_ficha(self, *datos):
-        self.listaFichas.append(FichaMedica(*datos))
 
-    def buscar_ficha(self, cod):
-        for i, ficha in enumerate(self.listaFichas, start=1):
-            if i == int(cod):
-                return ficha
 
-    def eliminar_ficha(self, cod):
-        if 0 <= cod < len(self.listaFichas):
-            del self.listaFichas[cod]
-            return True
-        return False
+    def obtener_fechas_fichas_por_mascota(self, nombre_mascota):
+        return [ficha.fecha for ficha in self.listaFichasMedicas if ficha.mascota.lower() == nombre_mascota.lower()]
 
-    def guardar_archivo_fichas(self):
-        with open("Resources/FichasMedicas.txt", "w") as file:
-            for ficha in self.listaFichas:
-                file.write(f"{ficha}\n")
-
-    def mostrar_fichas(self):
-        for ficha in self.listaFichas:
-            print(ficha)
+    def obtener_ficha_por_fecha_mascota(self, fecha, nombre_mascota):
+        return next((ficha for ficha in self.listaFichasMedicas if ficha.fecha == fecha and ficha.mascota.lower() == nombre_mascota.lower()), None)

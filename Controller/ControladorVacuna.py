@@ -16,18 +16,14 @@ class ControladorVacuna:
     def nuevo_vacuna(self, nombre, fecha_ven, dosis, costo, observaciones):
         self.listaVacunas.append(Vacuna(nombre, fecha_ven, dosis, costo, observaciones))
 
-    def modificar_vacuna(self, vac, opc, new):
-        obj = self.buscar_objeto(vac)
-        if opc == 1:
-            obj.nombre = new
-        elif opc == 2:
-            obj.fecha_ven = new
-        elif opc == 3:
-            obj.dosis = new
-        elif opc == 4:
-            obj.costo = new
-        elif opc == 5:
-            obj.observaciones = new
+    def modificar_vacuna(self, cod, nombre, fecha_ven, dosis, costo, observaciones):
+        obj = self.buscar_objeto(cod)
+        obj.nombre = nombre
+        obj.fecha_ven = fecha_ven
+        obj.dosis = dosis
+        obj.costo = costo
+        obj.observaciones = observaciones
+        self.guardar_archivo_vacunas()
 
     def buscar_objeto(self, cod):
         for i, vacuna in enumerate(self.listaVacunas, start=1):

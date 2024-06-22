@@ -1,0 +1,11 @@
+##########
+Fecha: 2024-06-22
+Mascota: Lore
+Veterinario: Fatima Florez
+Diagnóstico: Rabia
+Tratamiento: Diagnóstico: Rabia
+Descripción: Para rabia aguda
+Duración: 2 semanas
+Indicaciones: Antirabidico inyectable
+Vacunas: 
+Observaciones: No

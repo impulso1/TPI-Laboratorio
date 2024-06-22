@@ -1,15 +1,15 @@
 class Diagnostico:
-    def __init__(self, nombre, sintomas, tratamiento, observaciones):
+    def __init__(self, nombre, sintomas, tratamientos, observaciones):
         self.nombre = nombre
         self.sintomas = sintomas
-        self.tratamiento = tratamiento
+        self.tratamientos = tratamientos  # Nuevo atributo tratamientos
         self.observaciones = observaciones
 
     def __str__(self):
-        return f"{self.nombre} - {self.sintomas} - {self.tratamiento} - {self.observaciones}"
+        return f"{self.nombre} - {self.sintomas} - {self.tratamientos} - {self.observaciones}"
 
     def __repr__(self):
-        return f"{self.nombre} - {self.sintomas} - {self.tratamiento} - {self.observaciones}"
+        return f"{self.nombre} - {self.sintomas} - {self.tratamientos} - {self.observaciones}"
 
     # Métodos getter y setter para 'nombre'
     def get_nombre(self):

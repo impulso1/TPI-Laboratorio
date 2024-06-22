@@ -1,0 +1,11 @@
+##########
+Fecha: 2024-06-22
+Mascota: Piter
+Veterinario: Daniel Brochero
+Diagnóstico: Moquillo
+Tratamiento: Diagnóstico: Moquillo
+Descripción: Protocolo de tratamiento para perros diagnosticados con moquillo, una enfermedad viral grave que afecta el sistema respiratorio, gastrointestinal y nervioso.
+Duración: Entre 2 a 6 semanas.
+Indicaciones: Antiviral, Antibiotico, Terapia de apoyo nutricional, AntipirÃ©ticos y Antiinflamatorios.
+Vacunas: AntiMoquillo, Moquilon, Placebo, AntiRabia
+Observaciones: Prueba

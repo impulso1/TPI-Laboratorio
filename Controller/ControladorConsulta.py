@@ -29,27 +29,22 @@ class ControladorConsulta:
         self.diagnosticos.cargar_archivo_diagnosticos()
         self.tratamientos.cargar_archivo_tratamiento()
         self.vacunas.cargar_archivo_vacunas()
-        with open("Resources/Consultas.txt", "r") as file:
-            renglones = file.readlines()
-        for renglon in renglones:
-            valores = renglon.strip().split("^")
-            if len(valores) == 6:
-                fecha, nombreveterinario, nombrediagnostico, nombretratamiento, nombrevacunas, observaciones = valores
-                veterinario = self.veterinarios.buscar_veterinarioxnombre(nombreveterinario.lower())
-                diagnostico = self.diagnosticos.buscar_diagnosticoxnombre(nombrediagnostico.lower())
-                tratamiento = self.tratamientos.buscar_tratamientoxnombre(nombretratamiento.lower())
-                vacuna = self.vacunas.buscar_vacunaxnombre(nombrevacunas.lower())
-                if veterinario and diagnostico and tratamiento:
-                    self.listaConsultas.append(
-                        Consulta(fecha, veterinario, diagnostico, tratamiento, vacuna, observaciones))
-                else:
-                    print(f"No se pudo vincular alguno de los datos.")
+
 
     def obtener_nombres_veterinarios(self):
         return [f"{vet.nombre} {vet.apellido}" for vet in self.veterinarios.mostrar_veterinarios()]
 
-    def obtener_descripcion_tratamientos(self):
-        return [f"{trat.descripcion}" for trat in self.tratamientos.mostrar_tratamientos()]
+    def obtener_descripcion_tratamientos(self, tratamiento):
+        tratamiento_obj = self.tratamientos.buscar_tratamientoxnombre(tratamiento)
+        if tratamiento_obj:
+            descripcion = (
+                f"Diagnóstico: {tratamiento_obj.diagnostico.nombre}\n"
+                f"Descripción: {tratamiento_obj.descripcion}\n"
+                f"Duración: {tratamiento_obj.duracion}\n"
+                f"Indicaciones: {tratamiento_obj.indicaciones}"
+            )
+            return descripcion
+        return "No se encontró el tratamiento."
 
     def obtener_nombres_diagnosticos(self):
         return [f"{diag.nombre}" for diag in self.diagnosticos.mostrar_diagnosticos()]
@@ -57,13 +52,9 @@ class ControladorConsulta:
     def obtener_nombres_vacunas(self):
         return [vac.nombre for vac in self.vacunas.mostrar_vacunas()]
 
-    def guardar_archivo_consultas(self):
-        with open("Resources/Consultas.txt", "w") as file:
-            for consulta in self.listaConsultas:
-                file.write(f"{consulta.fecha}^{consulta.veterinario}^{consulta.diagnostico}^{consulta.tratamiento}^{','.join(consulta.vacunas)}^{consulta.observaciones}\n")
 
     def obtener_tratamiento_por_diagnostico(self, diagnostico):
-        tratamiento = self.tratamientos.buscar_tratamiento_por_diagnostico(diagnostico)
+        tratamiento = self.tratamientos.buscar_tratamientoxnombre(diagnostico)
         if tratamiento:
             return f"Descripción: {tratamiento.descripcion}\nDuración: {tratamiento.duracion}\nIndicaciones: {tratamiento.indicaciones}"
         else:
@@ -72,11 +63,27 @@ class ControladorConsulta:
     def obtener_nombres_mascotas(self):
         return [mascota.nombre for mascota in self.mascotas.mostrar_mascotas()]
 
-    def guardar_consulta(self, mascota, veterinario, diagnostico, tratamiento, vacunas, observaciones):
+
+    def guardar_consulta(self, mascota, veterinario, diagnostico, tratamiento, vacunas, observaciones, costo_total):
         fecha = datetime.now().strftime('%Y-%m-%d')
         consulta = Consulta(fecha, mascota, veterinario, diagnostico, tratamiento, vacunas, observaciones)
-        self.agregar_consulta(consulta)
-        self.guardar_archivo_consultas()
+        nombre_archivo = f"FichaMedica{consulta.mascota}.txt"
+        with open(f"Resources/Mascotas/{nombre_archivo}", "a") as file:
+            file.write(f"{'#' * 10}\n")
+            file.write(f"Fecha: {consulta.fecha}\n")
+            file.write(f"Mascota: {consulta.mascota}\n")
+            file.write(f"Veterinario: {consulta.veterinario}\n")
+            file.write(f"Diagnóstico: {consulta.diagnostico}\n")
+            file.write(f"Tratamiento: {consulta.tratamiento}\n")
+            file.write(f"Vacunas: {', '.join(consulta.vacunas)}\n")
+            file.write(f"Observaciones: {consulta.observaciones}\n")
+
+        with open("Resources/Facturas.txt", "a") as factura_file:
+            factura_file.write(f"{'#' * 10}\n")
+            factura_file.write(f"Veterinario: {veterinario}\n")
+            factura_file.write(f"Cliente: {self.obtener_dueno_por_mascota(mascota)}\n")
+            factura_file.write(f"Paciente: {mascota}\n")
+            factura_file.write(f"Costo total: ${costo_total:.2f}\n")
 
     def agregar_consulta(self, consulta):
         if isinstance(consulta, Consulta):
@@ -93,7 +100,7 @@ class ControladorConsulta:
     def obtener_matricula_por_veterinario(self, nombre_veterinario):
         for veterinario in self.veterinarios.mostrar_veterinarios():
             if f"{veterinario.nombre} {veterinario.apellido}" == nombre_veterinario:
-                return veterinario.matricula
+                return f"M.N. {veterinario.matricula}"
         return None
 
     def obtener_costo_vacuna(self, nombre_vacuna):
@@ -101,3 +108,4 @@ class ControladorConsulta:
         if vacuna:
             return vacuna.costo
         return None
+

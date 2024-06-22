@@ -1,7 +1,0 @@
-Pepito,Loro,Guacamayo,Saludable,Ivan
-Peter,Perro,Labrador, Viejo,Ivan
-Losaf,Perro,Persa,Saludable,Ivan
-Happy,Perro,Labrador,Excelente,Ivan
-Pepe,Loro,Guacamayo,Saludable,Ivan
-Pepelino,Gato,Persa,Saludable,Hanibal Lester
-Chiquito,Perro,Caniche,Duro,Felipe Segundo

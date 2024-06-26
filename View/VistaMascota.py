@@ -51,8 +51,8 @@ class VistaMascota(tk.Toplevel):
         self.nombre_entry.pack()
 
         tk.Label(self.formulario_creacion, text="Especie:").pack()
-        self.especie_entry = tk.Entry(self.formulario_creacion)
-        self.especie_entry.pack()
+        self.especie_combobox = ttk.Combobox(self.formulario_creacion, values=["Perro", "Gato", "Otro"])
+        self.especie_combobox.pack()
 
         tk.Label(self.formulario_creacion, text="Raza:").pack()
         razas_disponibles = [raza.nombre for raza in self.controlador_raza.listaRazas]
@@ -64,7 +64,8 @@ class VistaMascota(tk.Toplevel):
         self.estado_entry.pack()
 
         tk.Label(self.formulario_creacion, text="Propietario:").pack()
-        propietarios_disponibles = [f"{propietarios.nombre} {propietarios.apellido}" for propietarios in self.controlador_propietario.listaPropietarios]
+        propietarios_disponibles = [f"{propietarios.nombre} {propietarios.apellido}" for propietarios in
+                                    self.controlador_propietario.listaPropietarios]
         self.propietario_combobox = ttk.Combobox(self.formulario_creacion, values=propietarios_disponibles)
         self.propietario_combobox.pack()
 
@@ -72,7 +73,7 @@ class VistaMascota(tk.Toplevel):
 
     def crear_nueva_mascota(self):
         nombre = self.nombre_entry.get()
-        especie = self.especie_entry.get()
+        especie = self.especie_combobox.get()
         raza = self.raza_combobox.get()
         estado = self.estado_entry.get()
         propietario = self.propietario_combobox.get()
@@ -103,9 +104,9 @@ class VistaMascota(tk.Toplevel):
         self.nombre_entry.pack()
 
         tk.Label(self.formulario_modificacion, text="Especie:").pack()
-        self.especie_entry = tk.Entry(self.formulario_modificacion)
-        self.especie_entry.insert(0, mascota.especie)
-        self.especie_entry.pack()
+        self.especie_combobox = ttk.Combobox(self.formulario_modificacion, values=["Perro", "Gato", "Otro"])
+        self.especie_combobox.set(mascota.especie)
+        self.especie_combobox.pack()
 
         tk.Label(self.formulario_modificacion, text="Raza:").pack()
         razas_disponibles = [raza.nombre for raza in self.controlador_raza.listaRazas]
@@ -127,7 +128,20 @@ class VistaMascota(tk.Toplevel):
         tk.Button(self.formulario_modificacion, text="Aceptar", command=lambda: self.actualizar_mascota(cod)).pack()
 
     def actualizar_mascota(self, cod):
-        nombre = self.nombre
+        nombre = self.nombre_entry.get()
+        especie = self.especie_combobox.get()
+        raza = self.raza_combobox.get()
+        estado = self.estado_entry.get()
+        propietario = self.propietario_combobox.get()
+
+        if nombre and especie and raza and estado:
+            self.controlador_mascota.modificar_mascota(nombre, especie, raza, estado, propietario)
+            self.listbox.delete(cod - 1)
+            self.listbox.insert(cod - 1, f"{nombre} - {especie} - {raza} - {estado} - {propietario}")
+            self.formulario_modificacion.destroy()
+        else:
+            messagebox.showerror("Error", "Por favor complete todos los campos.")
+
 
 
     def eliminar_mascota(self):

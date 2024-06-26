@@ -1,10 +1,6 @@
 ##########
-Veterinario: Daniel Brochero
-Cliente: Ivan Giordano
-Paciente: Piter
-Costo total: $211.00
-##########
-Veterinario: Fatima Florez
-Cliente: Claudia Basualdo
-Paciente: Lore
-Costo total: $50.00
+Fecha: 2024/06/23
+Veterinario: Bautista Perez
+Cliente: Ana García
+Paciente: Luna
+Costo total: $98.00

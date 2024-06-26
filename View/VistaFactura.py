@@ -1,33 +1,47 @@
-class FacturaVista:
+import tkinter as tk
+from tkinter import ttk
 
-    def mostrar_factura(self):
-        cliente = self.factura.get_cliente()
-        consulta = self.factura.get_consulta()
+class VistaFactura(tk.Toplevel):
+    def __init__(self, controlador_factura):
+        super().__init__()
+        self.title("Facturas")
+        self.geometry("400x400")
+        self.controlador_factura = controlador_factura
 
+        label = tk.Label(self, text="Seleccionar Factura:")
+        label.pack(pady=10)
 
-        apellido_cliente = cliente.get_apellido()
-        nombre_cliente = cliente.get_nombre()
-        nombre_mascota = cliente.get_mascota().get_nombre()
+        self.fechas_combobox = ttk.Combobox(self)
+        self.fechas_combobox.pack(pady=10)
+        self.fechas_combobox.bind("<<ComboboxSelected>>", self.mostrar_factura_seleccionada)
 
-        costos_vacunas = []
-        for i, detalle in enumerate(consulta.get_vacunas(), start=1):
-            vacuna = detalle.get_vacuna()
-            costo_vacuna = vacuna.get_costo()
-            costos_vacunas.append(costo_vacuna)
+        self.texto_factura = tk.Text(self, height=15, width=60)
+        self.texto_factura.pack(pady=10)
 
+        cerrar_button = tk.Button(self, text="Cerrar", command=self.cerrar_ventana)
+        cerrar_button.pack(pady=10)
 
-        costo_total = self.factura.get_costoTotal()
+        self.mostrar_ventana()
 
+    def mostrar_ventana(self):
+        self.controlador_factura.cargar_archivo_facturas()
+        fechas_facturas = self.controlador_factura.obtener_fechas_facturas()
+        self.fechas_combobox["values"] = fechas_facturas
+        if fechas_facturas:
+            self.fechas_combobox.current(0)
+            self.mostrar_factura_seleccionada()
 
-        fecha_consulta = consulta.get_fecha().strftime("%d/%m/%Y")
+        self.wait_window()
 
+    def mostrar_factura_seleccionada(self, event=None):
+        index_seleccionado = self.fechas_combobox.current()
+        factura_seleccionada = self.controlador_factura.obtener_factura_por_fecha(index_seleccionado)
 
-        print("Factura")
-        print(f"Cliente: {apellido_cliente}, {nombre_cliente}")
-        print(f"Mascota: {nombre_mascota}")
-        print(f"Fecha de la Consulta: {fecha_consulta}")
-        print(f"Tratamiento: {consulta.get_tratamiento().get_costo()}")
-        print("Vacunas:")
-        for i, costo_vacuna in enumerate(costos_vacunas):
-            print(f"Vacuna {i + 1}: {costo_vacuna}")
-        print(f"Costo Total: ${costo_total}")
+        self.texto_factura.delete(1.0, tk.END)
+        if factura_seleccionada:
+            self.texto_factura.insert(tk.END, str(factura_seleccionada))
+        else:
+            self.texto_factura.insert(tk.END, "No se encontró la factura seleccionada.")
+
+    def cerrar_ventana(self):
+        self.destroy()

@@ -10,7 +10,7 @@ class ControladorVacuna:
         with open("Resources/Vacunas.txt", "r") as file:
             renglones = file.readlines()
         for renglon in renglones:
-            nombre, fecha_ven, dosis, costo, observaciones = renglon.strip().split(",")
+            nombre, fecha_ven, dosis, costo, observaciones = renglon.strip().split("|")
             self.listaVacunas.append(Vacuna(nombre, fecha_ven, dosis, costo, observaciones))
 
     def nuevo_vacuna(self, nombre, fecha_ven, dosis, costo, observaciones):
@@ -37,7 +37,7 @@ class ControladorVacuna:
         with open("Resources/Vacunas.txt", "w") as file:
             for vacuna in self.listaVacunas:
                 file.write(
-                    f"{vacuna.nombre},{vacuna.fecha_ven},{vacuna.dosis},{vacuna.costo},{vacuna.observaciones}\n")
+                    f"{vacuna.nombre}|{vacuna.fecha_ven}|{vacuna.dosis}|{vacuna.costo}|{vacuna.observaciones}\n")
 
     def eliminar_vacuna(self, vacuna):
         if vacuna in self.listaVacunas:

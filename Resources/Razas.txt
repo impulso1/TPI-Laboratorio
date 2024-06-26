@@ -1,7 +1,9 @@
-Labrador,Amigable
-Persa,Tranquilo
-Pastor Aleman,Inteligente
-Guacamayo,Hablador
-Golden Retriever,Leal
-Caniche,Tranquilo
-Doberman,Guardian
+Persa,Elegante
+Labrador Retriever,Amigable
+Siames,Sociable
+Pastor Alemán,Protector
+Maine Coon,Grande
+Bulldog,Robusto
+Sphynx,Desnudo
+Beagle,Curioso
+Caniche toy,Pequeño

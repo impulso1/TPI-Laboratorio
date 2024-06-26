@@ -1,0 +1,11 @@
+##########
+Fecha: 2024/06/26
+Mascota: Luna
+Veterinario: Bautista Perez
+Diagnóstico: Parvovirosis
+Tratamiento: Diagnóstico: Parvovirosis
+Descripción: Tratamiento con Fluidoterapia: Administración intravenosa de fluidos para corregir deshidratación y mantener el equilibrio electrolítico
+Duración: Generalmente de 2 a 5 días
+Indicaciones: Es crucial iniciar rápidamente para contrarrestar la deshidratación severa y mejorar las probabilidades de recuperación
+Vacunas: Anti Herpesvirus Felino, Vacuna contra la Leucemia Felina
+Observaciones: Ninguna.

@@ -1,4 +1,4 @@
-Chiquito|Perro|Caniche|Duro|Felipe Segundo
-Luna|Perro|Caniche|Sano|Felipe Segundo
-Piter|Perro|Caniche|Duro|Ivan Giordano
-Lore|Loro|Guacamayo|Viejo|Claudia Basualdo
+Luna|Perro|Caniche toy|Saludable|Ana García
+Piter|Perro|Labrador Retriever|Deteriorado|Juan Pérez
+Dora|Gato|Persa|Saludable|Carlos Sánchez
+Gala|Gato|Sphynx|Saludable|Carlos Sánchez

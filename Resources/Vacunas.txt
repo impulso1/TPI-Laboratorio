@@ -1,6 +1,5 @@
-Pfizer,08/2025,1 cada 8hs,100,Tomar en ayunas
-AntiMoquillo,01/2028,1 x dia,80,A la noche
-AntiTetanica,12/2025,1 al anio,100,Puede hacer vomitar
-Moquilon,02/1990,Cada 4hs,5,Referencia
-Placebo,10/2000,1 x dia,1,Ninguna
-AntiRabia,01/2070,1 al anio,75,Puede causar somnolencia
+Antirrabica|06/2025|1 dosis por año|15|Obligatoria en muchas regiones; previene la rabia, una enfermedad mortal transmitida por mordeduras de animales infectados
+Polivalente (Quíntuple)|08/2024|3 dosis en el primer año, luego refuerzos anuales|45|Protege contra varias enfermedades como moquillo, parvovirus, hepatitis, leptospirosis y parainfluenza; esencial para la salud general del animal
+Anti-Bordetella|10/2024|Anualmente|25|Recomendada para perros en contacto con otros en lugares como perreras, parques caninos o guarderías; previene la tos de las perreras, una infección respiratoria contagiosa
+Anti Herpesvirus Felino|09/2024|2 dosis en el primer año, luego refuerzos anuales|28|Protege contra la rinotraqueitis y otras infecciones respiratorias comunes en gatos; especialmente importante en ambientes multi-gato
+Vacuna contra la Leucemia Felina|07/2026|2 dosis en el primer año, luego refuerzos anuales|20|Recomendada para gatos que tienen acceso al exterior o viven en comunidades de gatos; previene la leucemia felina, una enfermedad viral grave

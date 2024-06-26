@@ -1,4 +1,5 @@
-Moquillo|Mocos|Peligrozo en cachorros y razas pequeÃ±as
-Insuficiencia renal|Antiespasmodico|Controlar la dieta
-Parvovirus|Afecta el sistema gastrointestinal y cardiovascular|Potencialmente mortal
-Rabia|Baba y agresividad|Puede ser peligroso para humanos
+Parvovirosis|Vómitos, diarrea con sangre, letargo|Alta contagiosidad, especialmente en cachorros no vacunados
+Moquillo Canino|Secreción nasal, fiebre, tos seca|Puede llevar a complicaciones neurológicas graves si no se trata adecuadamente
+Hipotiroidismo|Aumento de peso, letargo, piel seca|Común en razas como el Golden Retriever y el Labrador; diagnóstico mediante análisis de sangre
+Otitis Externa|Rascado de orejas, secreción o mal olor en el oído, sensibilidad al tacto|Frecuente en razas con orejas caídas; requiere limpieza y tratamiento específico
+Urolitiasis|Dificultad para orinar, sangre en la orina, lamido excesivo de la zona genital|Más común en machos; dieta adecuada y control veterinario son clave para la prevención

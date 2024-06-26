@@ -1,5 +1,5 @@
-Felipe,Segundo,595566556,das@afs.com
-Hanibal,Lester,14241413,r3rfew@gmail.com
-Ivan,Giordano,3535100205,giordvan@gmail.com
-Guada,Perez,3534256789,guadaperez@gmail.com
-Claudia,Basualdo,3534067068,claubasu@gmail.com
+Ana,García,+541112345678,ana.garcia@example.com
+Juan,Pérez,+541123456789,juan.perez@example.com
+María,López,+541134567890,maria.lopez@example.com
+Carlos,Sánchez,+541145678901,carlos.sanchez@example.com
+Lucía,Martínez,+541125897852,lucia.martinez2@example.com

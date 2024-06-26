@@ -7,6 +7,7 @@ from Controller.ControladorDiagnostico import ControladorDiagnostico
 from Controller.ControladorTratamiento import ControladorTratamiento
 from Controller.ControladorConsulta import ControladorConsulta
 from Controller.ControladorFichaMedica import ControladorFichaMedica
+from Controller.ControladorFactura import ControladorFactura
 from View.VistaGeneral import VistaGeneral
 from View.VistaMascota import VistaMascota
 from View.VistaRaza import VistaRaza
@@ -17,6 +18,7 @@ from View.VistaDiagnostico import VistaDiagnostico
 from View.VistaTratamiento import VistaTratamiento
 from View.VistaConsulta import VistaConsulta
 from View.VistaFichaMedica import VistaFichaMedica
+from View.VistaFactura import VistaFactura
 
 
 class ControladorGeneral:
@@ -30,6 +32,7 @@ class ControladorGeneral:
         self.controlador_diagnostico = ControladorDiagnostico()
         self.controlador_consulta = ControladorConsulta()
         self.controlador_fichamedica = ControladorFichaMedica()
+        self.controlador_factura = ControladorFactura()
 
     def abrir_vista_consulta(self, master):
         vista_consulta = VistaConsulta(master=master, controlador_consulta=self.controlador_consulta)
@@ -68,6 +71,8 @@ class ControladorGeneral:
             mascotas = self.controlador_mascota.mostrar_mascotas()
             if mascotas:
                 self.mostrar_vista_fichasmedicas(mascotas)
+        elif vista.selected_option.get() == "Facturas":
+            self.mostrar_vista_facturas()
 
     def mostrar_mascotas(self):
         return self.controlador_mascota.mostrar_mascotas()
@@ -119,4 +124,8 @@ class ControladorGeneral:
     def mostrar_vista_tratamientos(self, tratamiento):
         vista_tratamiento = VistaTratamiento(tratamiento, self.controlador_tratamiento)
         vista_tratamiento.mainloop()
+
+    def mostrar_vista_facturas(self):
+        vista_factura = VistaFactura(controlador_factura=self.controlador_factura)
+        vista_factura.mainloop()
 

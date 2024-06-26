@@ -55,7 +55,8 @@ class VistaGeneral(tk.Frame):
             "Razas",
             "Veterinarios",
             "Clientes (Propietarios)",
-            "Fichas Medicas"
+            "Fichas Medicas",
+            "Facturas"
         ], width=20)
         self.combobox.pack(pady=10)
 

@@ -12,19 +12,24 @@ class FichaMedica:
         self.observaciones = observaciones
 
     @classmethod
-    def from_string(cls, s):
-        datos = s.strip().split("\n")
-        fecha = datos[0].split(": ")[1]
-        mascota = datos[1].split(": ")[1]
-        veterinario = datos[2].split(": ")[1]
-        diagnostico = datos[3].split(": ")[1]
-        tratamiento = datos[4].split(": ")[1]
-        descripcion = datos[5].split(": ")[1]
-        duracion = datos[6].split(": ")[1]
-        indicaciones = datos[7].split(": ")[1]
-        vacunas = datos[8].split(": ")[1].split(", ")
-        observaciones = datos[9].split(": ")[1]
-        return cls(fecha, mascota, veterinario, diagnostico, tratamiento, descripcion, duracion, indicaciones, vacunas, observaciones)
+    def from_string(cls, ficha_string):
+        lines = ficha_string.strip().split('\n')
+        data = {}
+        for line in lines:
+            key, value = line.split(':', 1)
+            data[key.strip()] = value.strip()
+        return cls(
+            fecha=data.get('Fecha', ''),
+            mascota=data.get('Mascota', ''),
+            veterinario=data.get('Veterinario', ''),
+            diagnostico=data.get('Diagnóstico', ''),
+            tratamiento=data.get('Tratamiento', ''),
+            descripcion=data.get('Descripción', ''),
+            duracion=data.get('Duración', ''),
+            indicaciones=data.get('Indicaciones', ''),
+            vacunas=data.get('Vacunas', '').split(', '),
+            observaciones=data.get('Observaciones', '')
+        )
 
 
     def __str__(self):

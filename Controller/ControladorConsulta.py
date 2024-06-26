@@ -65,7 +65,7 @@ class ControladorConsulta:
 
 
     def guardar_consulta(self, mascota, veterinario, diagnostico, tratamiento, vacunas, observaciones, costo_total):
-        fecha = datetime.now().strftime('%Y-%m-%d')
+        fecha = datetime.now().strftime('%Y/%m/%d')
         consulta = Consulta(fecha, mascota, veterinario, diagnostico, tratamiento, vacunas, observaciones)
         nombre_archivo = f"FichaMedica{consulta.mascota}.txt"
         with open(f"Resources/Mascotas/{nombre_archivo}", "a") as file:
@@ -80,6 +80,7 @@ class ControladorConsulta:
 
         with open("Resources/Facturas.txt", "a") as factura_file:
             factura_file.write(f"{'#' * 10}\n")
+            factura_file.write(f"Fecha: {fecha}\n")
             factura_file.write(f"Veterinario: {veterinario}\n")
             factura_file.write(f"Cliente: {self.obtener_dueno_por_mascota(mascota)}\n")
             factura_file.write(f"Paciente: {mascota}\n")
